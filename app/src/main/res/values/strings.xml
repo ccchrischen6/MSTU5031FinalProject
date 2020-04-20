@@ -1,0 +1,45 @@
+<resources>
+    <string name="app_name">CouReg</string>
+    <string name="submit_button">Submit</string>
+    <string name="select_a_semester">Select a Semester</string>
+    <string name="sign_out">Sign Out</string>
+    <string name="summer_2020_term">Summer 2020 Term</string>
+    <string name="fall_2020_term">Fall 2020 Term</string>
+    <string name="summer_2020_term_time">05/21 – 08/14</string>
+    <string name="fall_2020_term_time">09/02 – 12/21</string>
+    <string name="select">Select</string>
+    <string name="adult_learning_and_leadership">Adult Learning and Leadership</string>
+    <string name="orld">ORLD</string>
+    <string name="human_cognition_and_learning">Human Cognition and Learning</string>
+    <string name="hudk">HUDK</string>
+    <string name="measurement_and_evaluation">Measurement and Evaluation</string>
+    <string name="hudm">HUDM</string>
+    <string name="com_computing_tech_in_edu">Com, Computing, Tech in Edu</string>
+    <string name="mstu">MSTU</string>
+    <string name="clinical_psychology">Clinical Psychology</string>
+    <string name="ccpx">CCPX</string>
+    <string name="mstu4001">MSTU4001 001</string>
+    <string name="mstu4001_intro">This course explores how technology is currently used in our schools and how technology can be used more effectively as a catalyst for larger school reform efforts.</string>
+    <string name="mstu4001_name">Technology and school change</string>
+    <string name="mstu4023">MSTU4023 001</string>
+    <string name="mstu4023_name">Cinema as cross-cultural communication</string>
+    <string name="mstu4023_intro">Analyzes how films explore culture. Discussion of the film as well as the cultural messages portrayed.</string>
+    <string name="mstu4031">MSTU4031 002</string>
+    <string name="mstu4031_name">Object-oriented theory and programming I</string>
+    <string name="mstu4031_intro">Use java to communicating with computers and humans through programming language in an object oriented style.</string>
+    <string name="mstu4040">MSTU4040 001</string>
+    <string name="mstu4040_name">Mobile Learning</string>
+    <string name="mstu4040_intro">This course considers both theoretical and practical perspetives in using mobile apps and devices for learning.</string>
+    <string name="mstu4083">MSTU4083 002</string>
+    <string name="mstu4083_name">Instructional design of educational technology</string>
+    <string name="mstu4083_intro">The nature of instructional technology. Systems approaches to planning, managing, and evaluating instructional process and materials.</string>
+    <string name="credit">Credit: </string>
+    <string name="room">Room: </string>
+    <string name="remaining_seat">Remaining Seat: </string>
+    <string name="time">Time:</string>
+    <string name="instructor">Instructor:</string>
+    <string name="auto_register">Auto Register</string>
+    <string name="register_now">Register Now</string>
+
+
+</resources>

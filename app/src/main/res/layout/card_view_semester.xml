@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/card_view_semester"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:cardElevation="8dp"
+    app:cardCornerRadius="20dp"
+    android:layout_marginBottom="7dp">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <ImageView
+            android:id="@+id/semester_photo"
+            android:layout_width="160dp"
+            android:layout_height="100dp"
+            android:layout_alignParentStart="true"
+            android:layout_marginEnd="16dp"
+            android:src="@drawable/summer2020" />
+
+        <TextView
+            android:id="@+id/semester_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_centerVertical="true"
+            android:layout_toEndOf="@+id/semester_photo"
+            android:text="@string/summer_2020_term"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/semester_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/semester_name"
+            android:layout_toEndOf="@+id/semester_photo"
+            android:text="@string/summer_2020_term_time"
+            android:textSize="14sp" />
+
+        <Button
+            android:id="@+id/select_semester"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/semester_time"
+            android:layout_toEndOf="@+id/semester_photo"
+            android:text="@string/select"
+            android:textSize="10sp" />
+
+    </RelativeLayout>
+
+</androidx.cardview.widget.CardView>
