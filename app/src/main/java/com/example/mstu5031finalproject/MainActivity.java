@@ -1,4 +1,7 @@
 package com.example.mstu5031finalproject;
+/**
+ * written by Sharon & Chris
+ */
 
 import androidx.appcompat.app.AppCompatActivity;
 
