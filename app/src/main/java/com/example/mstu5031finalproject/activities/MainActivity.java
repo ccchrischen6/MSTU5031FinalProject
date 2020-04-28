@@ -1,4 +1,4 @@
-package com.example.mstu5031finalproject;
+package com.example.mstu5031finalproject.activities;
 /**
  * written by Sharon & Chris
  */
@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 
+import com.example.mstu5031finalproject.R;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;

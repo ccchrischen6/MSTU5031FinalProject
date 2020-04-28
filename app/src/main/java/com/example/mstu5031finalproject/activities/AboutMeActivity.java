@@ -1,4 +1,4 @@
-package com.example.mstu5031finalproject;
+package com.example.mstu5031finalproject.activities;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -10,6 +10,7 @@ import android.view.MenuItem;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.mstu5031finalproject.R;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
@@ -84,7 +85,7 @@ public class AboutMeActivity extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
                         Toast.makeText(AboutMeActivity.this, "Signed Out", Toast.LENGTH_SHORT).show();
-                        Intent intent = new Intent(AboutMeActivity.this,MainActivity.class);
+                        Intent intent = new Intent(AboutMeActivity.this, MainActivity.class);
                         startActivity(intent);
                         finish();
                     }

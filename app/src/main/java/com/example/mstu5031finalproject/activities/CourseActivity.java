@@ -1,10 +1,14 @@
-package com.example.mstu5031finalproject;
+package com.example.mstu5031finalproject.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
+
+import com.example.mstu5031finalproject.CourseAdapter;
+import com.example.mstu5031finalproject.R;
+import com.example.mstu5031finalproject.entity.Course;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,7 +22,7 @@ public class CourseActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_course);
 
-        setTitle("Select Course");
+        setTitle(getString(R.string.select_a_course));
 
         initialData();
 

@@ -2,6 +2,8 @@
     <string name="app_name">CouReg</string>
     <string name="submit_button">Submit</string>
     <string name="select_a_semester">Select a Semester</string>
+    <string name="select_a_department">Select a Department</string>
+    <string name="select_a_course">Select a Course</string>
     <string name="sign_out">Sign Out</string>
     <string name="summer_2020_term">Summer 2020 Term</string>
     <string name="fall_2020_term">Fall 2020 Term</string>
@@ -18,6 +20,9 @@
     <string name="mstu">MSTU</string>
     <string name="clinical_psychology">Clinical Psychology</string>
     <string name="ccpx">CCPX</string>
+
+    <string name="couseInfo">Course Information</string>
+
     <string name="mstu4001">MSTU4001 001</string>
     <string name="mstu4001_intro">This course explores how technology is currently used in our schools and how technology can be used more effectively as a catalyst for larger school reform efforts.</string>
     <string name="mstu4001_name">Technology and school change</string>
@@ -40,6 +45,4 @@
     <string name="instructor">Instructor:</string>
     <string name="auto_register">Auto Register</string>
     <string name="register_now">Register Now</string>
-
-
 </resources>

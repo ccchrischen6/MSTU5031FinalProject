@@ -10,6 +10,9 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.mstu5031finalproject.activities.DepartmentActivity;
+import com.example.mstu5031finalproject.entity.Semester;
+
 import java.util.List;
 
 public class SemesterAdapter extends RecyclerView.Adapter<SemesterViewHolder> {
@@ -38,7 +41,7 @@ public class SemesterAdapter extends RecyclerView.Adapter<SemesterViewHolder> {
         holder.selectSemester.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (semester.semesterName.equals("Fall 2020 Term")) {
+                if (semester.semesterName.equals(context.getString(R.string.fall_2020_term))) {
                     Intent intent = new Intent(context, DepartmentActivity.class);
                     context.startActivity(intent);
                 } else {

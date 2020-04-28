@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">选课助手</string>
+    <string name="register_now">即可选课</string>
+    <string name="auto_register">预约选课</string>
+    <string name="instructor">授课人</string>
+    <string name="submit_button">提交</string>
+    <string name="select_a_semester">选择学期</string>
+    <string name="sign_out">退出登录</string>
+    <string name="summer_2020_term">2020夏季学期</string>
+    <string name="fall_2020_term">2020秋季学期</string>
+    <string name="select">选择</string>
+    <string name="credit">学分</string>
+    <string name="room">地点</string>
+    <string name="remaining_seat">课余量</string>
+    <string name="time">时间</string>
+    <string name="couseInfo">课程信息</string>
+    <string name="select_a_department">选择院系</string>
+    <string name="select_a_course">选择课程</string>
+</resources>

@@ -1,4 +1,4 @@
-package com.example.mstu5031finalproject;
+package com.example.mstu5031finalproject.activities;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -8,8 +8,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
+import com.example.mstu5031finalproject.R;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -44,7 +44,7 @@ public class CourseInfoActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_course_info);
 
-        setTitle("Course Information");
+        setTitle(getString(R.string.couseInfo));
         courseNumberTextView = findViewById(R.id.course_info_number);
         courseNameTextView = findViewById(R.id.course_name);
         instructorTextView = findViewById(R.id.instructor);

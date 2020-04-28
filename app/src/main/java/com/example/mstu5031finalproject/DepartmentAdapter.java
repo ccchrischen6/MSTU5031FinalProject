@@ -10,6 +10,9 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.mstu5031finalproject.activities.CourseActivity;
+import com.example.mstu5031finalproject.entity.Department;
+
 import java.util.List;
 
 public class DepartmentAdapter extends RecyclerView.Adapter<DepartmentViewHolder> {
@@ -39,7 +42,7 @@ public class DepartmentAdapter extends RecyclerView.Adapter<DepartmentViewHolder
             @Override
             public void onClick(View v) {
                 if(department.departmentAbb.equals("MSTU")){
-                    Intent intent = new Intent(context,CourseActivity.class);
+                    Intent intent = new Intent(context, CourseActivity.class);
                     context.startActivity(intent);
                 } else {
                     Toast.makeText(context, departments.get(position).departmentAbb + " Is Not Available", Toast.LENGTH_SHORT).show();

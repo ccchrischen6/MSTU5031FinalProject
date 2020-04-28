@@ -1,16 +1,14 @@
-package com.example.mstu5031finalproject;
+package com.example.mstu5031finalproject.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.Spinner;
-import android.widget.Toast;
+
+import com.example.mstu5031finalproject.R;
+import com.example.mstu5031finalproject.SemesterAdapter;
+import com.example.mstu5031finalproject.entity.Semester;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,7 +22,7 @@ public class SemesterActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_semester);
-        setTitle("Select Semester");
+        setTitle(getString(R.string.select_a_semester));
 
         initialData();
 

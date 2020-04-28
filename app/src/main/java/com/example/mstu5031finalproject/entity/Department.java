@@ -1,4 +1,4 @@
-package com.example.mstu5031finalproject;
+package com.example.mstu5031finalproject.entity;
 
 public class Department {
     public String departmentName;

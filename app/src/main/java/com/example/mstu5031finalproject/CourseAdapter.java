@@ -5,10 +5,12 @@ import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.example.mstu5031finalproject.activities.CourseInfoActivity;
+import com.example.mstu5031finalproject.entity.Course;
 
 import java.util.List;
 

@@ -1,10 +1,14 @@
-package com.example.mstu5031finalproject;
+package com.example.mstu5031finalproject.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
+
+import com.example.mstu5031finalproject.DepartmentAdapter;
+import com.example.mstu5031finalproject.R;
+import com.example.mstu5031finalproject.entity.Department;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,7 +23,7 @@ public class DepartmentActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_department);
 
-        setTitle("Select Department");
+        setTitle(getString(R.string.select_a_department));
 
         initialData();
 
