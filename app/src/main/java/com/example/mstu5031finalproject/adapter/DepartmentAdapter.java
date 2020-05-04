@@ -1,16 +1,18 @@
-package com.example.mstu5031finalproject;
+package com.example.mstu5031finalproject.adapter;
 
 import android.content.Context;
-import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.mstu5031finalproject.activities.CourseActivity;
+import com.example.mstu5031finalproject.fragment.CourseFragment;
+import com.example.mstu5031finalproject.viewHolder.DepartmentViewHolder;
+import com.example.mstu5031finalproject.R;
 import com.example.mstu5031finalproject.entity.Department;
 
 import java.util.List;
@@ -42,8 +44,9 @@ public class DepartmentAdapter extends RecyclerView.Adapter<DepartmentViewHolder
             @Override
             public void onClick(View v) {
                 if(department.departmentAbb.equals("MSTU")){
-                    Intent intent = new Intent(context, CourseActivity.class);
-                    context.startActivity(intent);
+                    AppCompatActivity activity = (AppCompatActivity) v.getContext();
+                    CourseFragment cf = new CourseFragment();
+                    activity.getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, cf).addToBackStack(null).commit();
                 } else {
                     Toast.makeText(context, departments.get(position).departmentAbb + " Is Not Available", Toast.LENGTH_SHORT).show();
                 }

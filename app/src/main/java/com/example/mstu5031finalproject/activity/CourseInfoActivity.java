@@ -1,4 +1,4 @@
-package com.example.mstu5031finalproject.activities;
+package com.example.mstu5031finalproject.activity;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -44,7 +44,7 @@ public class CourseInfoActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_course_info);
 
-        setTitle(getString(R.string.couseInfo));
+
         courseNumberTextView = findViewById(R.id.course_info_number);
         courseNameTextView = findViewById(R.id.course_name);
         instructorTextView = findViewById(R.id.instructor);
@@ -92,7 +92,7 @@ public class CourseInfoActivity extends AppCompatActivity {
         registerNow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(CourseInfoActivity.this, AboutMeActivity.class);
+                Intent intent = new Intent(CourseInfoActivity.this, MainActivity.class);
                 startActivity(intent);
 
             }

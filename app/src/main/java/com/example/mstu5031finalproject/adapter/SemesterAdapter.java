@@ -1,16 +1,18 @@
-package com.example.mstu5031finalproject;
+package com.example.mstu5031finalproject.adapter;
 
 import android.content.Context;
-import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.mstu5031finalproject.activities.DepartmentActivity;
+import com.example.mstu5031finalproject.R;
+import com.example.mstu5031finalproject.fragment.DepartmentFragment;
+import com.example.mstu5031finalproject.viewHolder.SemesterViewHolder;
 import com.example.mstu5031finalproject.entity.Semester;
 
 import java.util.List;
@@ -42,8 +44,10 @@ public class SemesterAdapter extends RecyclerView.Adapter<SemesterViewHolder> {
             @Override
             public void onClick(View v) {
                 if (semester.semesterName.equals(context.getString(R.string.fall_2020_term))) {
-                    Intent intent = new Intent(context, DepartmentActivity.class);
-                    context.startActivity(intent);
+                    AppCompatActivity activity = (AppCompatActivity) v.getContext();
+                    DepartmentFragment df = new DepartmentFragment();
+                    activity.getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, df).addToBackStack(null).commit();
+
                 } else {
                     Toast.makeText(context, semesters.get(position).semesterName + " Is Not Available", Toast.LENGTH_SHORT).show();
                 }

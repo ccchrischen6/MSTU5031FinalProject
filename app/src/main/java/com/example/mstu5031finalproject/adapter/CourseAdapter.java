@@ -1,4 +1,4 @@
-package com.example.mstu5031finalproject;
+package com.example.mstu5031finalproject.adapter;
 
 import android.content.Context;
 import android.content.Intent;
@@ -9,7 +9,9 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.mstu5031finalproject.activities.CourseInfoActivity;
+import com.example.mstu5031finalproject.viewHolder.CourseViewHolder;
+import com.example.mstu5031finalproject.R;
+import com.example.mstu5031finalproject.activity.CourseInfoActivity;
 import com.example.mstu5031finalproject.entity.Course;
 
 import java.util.List;
@@ -39,7 +41,6 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseViewHolder> {
         holder.selectCourse.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                System.out.println(course.courseNumber);
                 Intent intent = new Intent(context, CourseInfoActivity.class);
                 intent.putExtra("courseNumber",course.courseNumber);
                 context.startActivity(intent);

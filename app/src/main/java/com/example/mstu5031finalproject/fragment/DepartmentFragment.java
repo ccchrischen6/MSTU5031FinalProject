@@ -1,36 +1,42 @@
-package com.example.mstu5031finalproject.activities;
+package com.example.mstu5031finalproject.fragment;
 
-import androidx.appcompat.app.AppCompatActivity;
+import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.os.Bundle;
-
-import com.example.mstu5031finalproject.DepartmentAdapter;
 import com.example.mstu5031finalproject.R;
+import com.example.mstu5031finalproject.adapter.DepartmentAdapter;
+import com.example.mstu5031finalproject.adapter.SemesterAdapter;
 import com.example.mstu5031finalproject.entity.Department;
+import com.example.mstu5031finalproject.entity.Semester;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class DepartmentActivity extends AppCompatActivity {
-
+public class DepartmentFragment extends Fragment {
     private List<Department> departments;
 
-
+    @Nullable
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_department);
-
-        setTitle(getString(R.string.select_a_department));
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+//        return inflater.inflate(R.layout.fragment_register, container, false);
+        View view = inflater.inflate(R.layout.fragment_department, container, false);
 
         initialData();
-
-        RecyclerView recyclerView = findViewById(R.id.recycler_view);
+        RecyclerView recyclerView = view.findViewById(R.id.recycler_view);
         recyclerView.setHasFixedSize(true);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        recyclerView.setAdapter(new DepartmentAdapter(departments,this));
+        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+        recyclerView.setAdapter(new DepartmentAdapter(departments, getContext()));
+
+
+        return view;
     }
 
     private void initialData() {

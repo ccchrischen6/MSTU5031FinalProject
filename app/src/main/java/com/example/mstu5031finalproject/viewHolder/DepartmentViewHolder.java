@@ -1,4 +1,4 @@
-package com.example.mstu5031finalproject;
+package com.example.mstu5031finalproject.viewHolder;
 
 import android.content.Context;
 import android.view.View;
@@ -9,6 +9,8 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.example.mstu5031finalproject.R;
 
 public class DepartmentViewHolder extends RecyclerView.ViewHolder {
     public CardView cardView;
