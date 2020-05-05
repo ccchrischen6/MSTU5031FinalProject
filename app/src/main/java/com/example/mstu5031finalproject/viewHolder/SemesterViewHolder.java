@@ -27,12 +27,5 @@ public class SemesterViewHolder extends RecyclerView.ViewHolder{
         semesterName = itemView.findViewById(R.id.semester_name);
         semesterTime = itemView.findViewById(R.id.semester_time);
         selectSemester = itemView.findViewById(R.id.select_semester);
-//
-//        selectSemester.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Toast.makeText(context, "Not Available",Toast.LENGTH_SHORT).show();
-//            }
-//        });
     }
 }

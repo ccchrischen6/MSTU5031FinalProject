@@ -1,6 +1,7 @@
 package com.example.mstu5031finalproject.entity;
 
 import android.app.Application;
+import android.net.Uri;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -11,12 +12,12 @@ import java.util.Map;
 
 public class User extends Application {
     private String userName;
-    private String profileUrl;
+    private Uri profileUrl;
     private Map<String, Course> regCourses = new HashMap<>();
 
     public User(){}
 
-    public User(String userName, String profileUrl) {
+    public User(String userName, Uri profileUrl) {
         this.userName = userName;
         this.profileUrl = profileUrl;
     }
@@ -29,11 +30,11 @@ public class User extends Application {
         this.userName = userName;
     }
 
-    public String getProfileUrl() {
+    public Uri getProfileUrl() {
         return profileUrl;
     }
 
-    public void setProfileUrl(String profileUrl) {
+    public void setProfileUrl(Uri profileUrl) {
         this.profileUrl = profileUrl;
     }
 

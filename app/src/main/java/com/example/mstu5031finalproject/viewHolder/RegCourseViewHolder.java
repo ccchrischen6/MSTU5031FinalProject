@@ -10,6 +10,8 @@ import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.mstu5031finalproject.R;
+import com.example.mstu5031finalproject.activity.MainActivity;
+import com.example.mstu5031finalproject.entity.User;
 
 public class RegCourseViewHolder extends RecyclerView.ViewHolder {
 
@@ -22,6 +24,7 @@ public class RegCourseViewHolder extends RecyclerView.ViewHolder {
     public TextView time;
 
     public Button dropCourse;
+    private User user;
 
     public RegCourseViewHolder(@NonNull View itemView, final Context context) {
         super(itemView);
@@ -32,6 +35,13 @@ public class RegCourseViewHolder extends RecyclerView.ViewHolder {
         credit = itemView.findViewById(R.id.reg_course_credit);
         room = itemView.findViewById(R.id.reg_course_room);
         time = itemView.findViewById(R.id.reg_course_time);
+        dropCourse = itemView.findViewById(R.id.reg_drop_course);
+        dropCourse.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
 
     }
 }

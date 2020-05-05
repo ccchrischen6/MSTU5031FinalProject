@@ -1,14 +1,20 @@
 package com.example.mstu5031finalproject.fragment;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -27,14 +33,24 @@ import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import com.bumptech.glide.Glide;
+
+import static android.app.Activity.RESULT_OK;
+
 public class AboutMeFragment extends Fragment {
     TextView name;
+    private ImageView profileImageView;
+    private Uri profileUri;
     GoogleSignInClient mGoogleSignInClient;
     private List<Course> courses = new ArrayList<>();
+    private static final int RC_PHOTO_PICKER = 2;
 
     @Nullable
     @Override
@@ -42,12 +58,37 @@ public class AboutMeFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_about_me, container, false);
         setHasOptionsMenu(true);
         setupGoogle(view);
+        profileImageView = view.findViewById(R.id.image);
+        //handle profile
+        if(((User) getActivity().getApplication()).getProfileUrl() != null){
+            try {
+                profileUri = ((User) getActivity().getApplication()).getProfileUrl();
+                Glide.with(profileImageView.getContext())
+                        .load(profileUri)
+                        .override(1280, 1280)
+                        .centerCrop()
+                        .crossFade()
+                        .into(profileImageView);
 
-        initialData();
-        for (Course course : courses) {
-            System.out.println(course.toString());
+                Bitmap bitmapImage = MediaStore.Images.Media.getBitmap(getActivity().getContentResolver(), profileUri);
+                profileImageView.setImageBitmap(bitmapImage);
+
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
         }
 
+        profileImageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+//                intent.putExtra(Intent.EXTRA_LOCAL_ONLY, true);
+                startActivityForResult(Intent.createChooser(intent, "Complete action using"), RC_PHOTO_PICKER);
+            }
+        });
+
+        initialData();
 
         RecyclerView recyclerView = view.findViewById(R.id.reg_recycler_view);
         recyclerView.setHasFixedSize(true);
@@ -86,7 +127,6 @@ public class AboutMeFragment extends Fragment {
         GoogleSignInAccount acct = GoogleSignIn.getLastSignedInAccount(getContext());
         if (acct != null) {
             String personName = acct.getDisplayName();
-            //Uri personPhoto = acct.getPhotoUrl();
             name.setText(personName);
         }
     }
@@ -97,4 +137,30 @@ public class AboutMeFragment extends Fragment {
             courses.add(entry.getValue());
         }
     }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        //super method removed
+        if (resultCode == RESULT_OK) {
+            try {
+                Uri returnUri = data.getData();
+                Glide.with(profileImageView.getContext())
+                        .load(returnUri)
+                        .override(1280, 1280)
+                        .centerCrop()
+                        .crossFade()
+                        .into(profileImageView);
+
+
+                Bitmap bitmapImage = MediaStore.Images.Media.getBitmap(getActivity().getContentResolver(), returnUri);
+                profileImageView.setImageBitmap(bitmapImage);
+                ((User) getActivity().getApplication()).setProfileUrl(returnUri);
+            } catch (IOException e) {
+                e.printStackTrace();
+                Toast.makeText(getContext(), "Something went wrong", Toast.LENGTH_LONG).show();
+            }
+
+        }
+    }
+
 }
