@@ -50,7 +50,7 @@ public class RegCourseAdapter extends RecyclerView.Adapter<RegCourseViewHolder> 
         holder.dropCourse.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(context, holder.courseName.getText() + "is dropped", Toast.LENGTH_LONG).show();
+                Toast.makeText(context, holder.courseName.getText() + " is dropped", Toast.LENGTH_LONG).show();
                 regCourses.remove(position);
                 notifyItemRemoved(position);
                 notifyItemRangeChanged(position, regCourses.size());
