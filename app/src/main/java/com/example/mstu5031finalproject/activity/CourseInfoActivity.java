@@ -10,11 +10,16 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.mstu5031finalproject.R;
+import com.example.mstu5031finalproject.constant.Constant;
+import com.example.mstu5031finalproject.entity.Course;
+import com.example.mstu5031finalproject.entity.User;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+
+import java.util.List;
 
 public class CourseInfoActivity extends AppCompatActivity {
 
@@ -39,6 +44,8 @@ public class CourseInfoActivity extends AppCompatActivity {
     private String room;
     private String time;
 
+    private User user;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -59,8 +66,11 @@ public class CourseInfoActivity extends AppCompatActivity {
         System.out.println(courseNumber);
         courseNumberTextView.setText(courseNumber);
 
+        user = (User) getIntent().getSerializableExtra(Constant.USER);
+
+
         database = FirebaseDatabase.getInstance();
-        myRef = database.getReference("MSTU").child(courseNumber);
+        myRef = database.getReference(Constant.MSTU).child(courseNumber);
         myRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -92,8 +102,10 @@ public class CourseInfoActivity extends AppCompatActivity {
         registerNow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(CourseInfoActivity.this, MainActivity.class);
-                startActivity(intent);
+                Course course = new Course(courseNumber, courseName, credit, room, time, instructor);
+                ((User) getApplication()).getRegCourses().put(courseName, course);
+
+
 
             }
         });

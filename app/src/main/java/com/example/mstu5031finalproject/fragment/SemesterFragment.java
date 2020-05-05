@@ -25,18 +25,13 @@ public class SemesterFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-//        return inflater.inflate(R.layout.fragment_register, container, false);
         View view = inflater.inflate(R.layout.fragment_semester, container, false);
 
-
         initialData();
-
         RecyclerView recyclerView = view.findViewById(R.id.recycler_view);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         recyclerView.setAdapter(new SemesterAdapter(semesters,getContext()));
-
-
 
         return view;
     }

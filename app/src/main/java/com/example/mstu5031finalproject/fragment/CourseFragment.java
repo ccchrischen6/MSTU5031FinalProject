@@ -36,7 +36,6 @@ public class CourseFragment extends Fragment {
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         recyclerView.setAdapter(new CourseAdapter(courses,getContext()));
 
-
         return view;
     }
 

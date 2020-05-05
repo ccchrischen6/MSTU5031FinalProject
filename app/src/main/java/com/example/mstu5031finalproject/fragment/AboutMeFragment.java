@@ -13,17 +13,28 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.mstu5031finalproject.R;
 import com.example.mstu5031finalproject.activity.LoginActivity;
+import com.example.mstu5031finalproject.adapter.CourseAdapter;
+import com.example.mstu5031finalproject.adapter.RegCourseAdapter;
+import com.example.mstu5031finalproject.entity.Course;
+import com.example.mstu5031finalproject.entity.User;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+
 public class AboutMeFragment extends Fragment {
     TextView name;
     GoogleSignInClient mGoogleSignInClient;
+    private List<Course> courses = new ArrayList<>();
 
     @Nullable
     @Override
@@ -31,6 +42,18 @@ public class AboutMeFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_about_me, container, false);
         setHasOptionsMenu(true);
         setupGoogle(view);
+
+        initialData();
+        for (Course course : courses) {
+            System.out.println(course.toString());
+        }
+
+
+        RecyclerView recyclerView = view.findViewById(R.id.reg_recycler_view);
+        recyclerView.setHasFixedSize(true);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+        recyclerView.setAdapter(new RegCourseAdapter(courses, getContext()));
+
         return view;
     }
 
@@ -43,7 +66,6 @@ public class AboutMeFragment extends Fragment {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == R.id.sign_out) {
-//            signOut();
             mGoogleSignInClient.signOut();
             Intent intent = new Intent(getContext(), LoginActivity.class);
             startActivity(intent);
@@ -52,21 +74,7 @@ public class AboutMeFragment extends Fragment {
         return super.onOptionsItemSelected(item);
     }
 
-//    private void signOut() {
-//        mGoogleSignInClient.signOut()
-//                .addOnCompleteListener(this, new OnCompleteListener<Void>() {
-//                    @Override
-//
-//                    public void onComplete(@NonNull Task<Void> task) {
-//                        Toast.makeText(getContext(), "Signed Out", Toast.LENGTH_SHORT).show();
-//                        Intent intent = new Intent(getContext(), LoginActivity.class);
-//                        startActivity(intent);
-//                        finish();
-//                    }
-//                });
-//    }
-
-    private void setupGoogle(View view){
+    private void setupGoogle(View view) {
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestEmail()
                 .build();
@@ -80,6 +88,13 @@ public class AboutMeFragment extends Fragment {
             String personName = acct.getDisplayName();
             //Uri personPhoto = acct.getPhotoUrl();
             name.setText(personName);
+        }
+    }
+
+    private void initialData() {
+        Map<String, Course> courseMap = ((User) this.getActivity().getApplication()).getRegCourses();
+        for (Map.Entry<String, Course> entry : courseMap.entrySet()) {
+            courses.add(entry.getValue());
         }
     }
 }

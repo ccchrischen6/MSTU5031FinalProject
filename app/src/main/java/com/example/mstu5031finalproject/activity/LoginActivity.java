@@ -11,6 +11,9 @@ import android.util.Log;
 import android.view.View;
 
 import com.example.mstu5031finalproject.R;
+import com.example.mstu5031finalproject.constant.Constant;
+import com.example.mstu5031finalproject.entity.Course;
+import com.example.mstu5031finalproject.entity.User;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
@@ -19,10 +22,15 @@ import com.google.android.gms.common.SignInButton;
 import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.tasks.Task;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+
 public class LoginActivity extends AppCompatActivity {
     SignInButton signin;
     GoogleSignInClient mGoogleSignInClient;
     int RC_SIGN_IN = 0;
+    private String userName;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,8 +80,14 @@ public class LoginActivity extends AppCompatActivity {
         try {
             GoogleSignInAccount account = completedTask.getResult(ApiException.class);
 
+            //get userName
+            GoogleSignInAccount acct = GoogleSignIn.getLastSignedInAccount(this);
+            userName = acct.getDisplayName();
+
+            //create the user for local usage
+            User user = new User(userName, null);
+
             // Signed in successfully, show authenticated UI.
-//            Intent intent = new Intent(LoginActivity.this, SemesterActivity.class);
             Intent intent = new Intent(LoginActivity.this, MainActivity.class);
             startActivity(intent);
         } catch (ApiException e) {
