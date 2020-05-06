@@ -58,37 +58,37 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    private ValueEventListener listenerHelper(){
-        ValueEventListener listener = new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                //create local user if no record on the database
-                if (!dataSnapshot.hasChild(user.getUserName())){
-                    // set up the key for current user
-                    DatabaseReference keyRef = userRef.child(user.getUserName());
-                    keyRef.setValue(user);
-                }
-
-                //sync data from database
-                else {
-                    user = dataSnapshot.child(user.getUserName()).getValue(User.class);
-                    System.out.println(user.getProfileUrl());
-                    Intent intent = new Intent(MainActivity.this, CourseInfoActivity.class);
-
-                    //transfer the User object to MainActivity
-//                    intent.putExtra(Constant.USER, user);
-
-                }
-
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-        };
-        return listener;
-    }
+//    private ValueEventListener listenerHelper(){
+//        ValueEventListener listener = new ValueEventListener() {
+//            @Override
+//            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+//                //create local user if no record on the database
+//                if (!dataSnapshot.hasChild(user.getUserName())){
+//                    // set up the key for current user
+//                    DatabaseReference keyRef = userRef.child(user.getUserName());
+//                    keyRef.setValue(user);
+//                }
+//
+//                //sync data from database
+//                else {
+//                    user = dataSnapshot.child(user.getUserName()).getValue(User.class);
+//                    System.out.println(user.getProfileUrl());
+//                    Intent intent = new Intent(MainActivity.this, CourseInfoActivity.class);
+//
+//                    //transfer the User object to MainActivity
+////                    intent.putExtra(Constant.USER, user);
+//
+//                }
+//
+//            }
+//
+//            @Override
+//            public void onCancelled(@NonNull DatabaseError databaseError) {
+//
+//            }
+//        };
+//        return listener;
+//    }
 
 
 

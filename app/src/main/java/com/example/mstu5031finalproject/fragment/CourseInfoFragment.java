@@ -1,13 +1,17 @@
-package com.example.mstu5031finalproject.activity;
+package com.example.mstu5031finalproject.fragment;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
-import android.content.Intent;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
 
 import com.example.mstu5031finalproject.R;
 import com.example.mstu5031finalproject.constant.Constant;
@@ -19,10 +23,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-import java.util.List;
-
-public class CourseInfoActivity extends AppCompatActivity {
-
+public class CourseInfoFragment extends Fragment {
     FirebaseDatabase database;
     DatabaseReference myRef;
 
@@ -46,28 +47,28 @@ public class CourseInfoActivity extends AppCompatActivity {
 
     private User user;
 
+    @Nullable
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_course_info);
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.fragment_course_info, container, false);
 
 
-        courseNumberTextView = findViewById(R.id.course_info_number);
-        courseNameTextView = findViewById(R.id.course_name);
-        instructorTextView = findViewById(R.id.instructor);
-        creditTextView = findViewById(R.id.credit);
-        remTextView = findViewById(R.id.rem);
-        roomTextView = findViewById(R.id.room);
-        timeTextView = findViewById(R.id.time);
-        registerNow = findViewById(R.id.register_now_button);
+        courseNumberTextView = view.findViewById(R.id.course_info_number);
+        courseNameTextView = view.findViewById(R.id.course_name);
+        instructorTextView = view.findViewById(R.id.instructor);
+        creditTextView = view.findViewById(R.id.credit);
+        remTextView = view.findViewById(R.id.rem);
+        roomTextView = view.findViewById(R.id.room);
+        timeTextView = view.findViewById(R.id.time);
+        registerNow = view.findViewById(R.id.register_now_button);
 
-        Intent receiveIntent = getIntent();
-        courseNumber = receiveIntent.getStringExtra("courseNumber");
-        System.out.println(courseNumber);
+
+        //receive courseNumber from courseFragment
+        Bundle bundle = this.getArguments();
+        courseNumber = bundle.getString(Constant.SELECTED_COURSE);
         courseNumberTextView.setText(courseNumber);
 
-        user = (User) getIntent().getSerializableExtra(Constant.USER);
-
+        user = (User) this.getActivity().getApplication();
 
         database = FirebaseDatabase.getInstance();
         myRef = database.getReference(Constant.MSTU).child(courseNumber);
@@ -103,16 +104,19 @@ public class CourseInfoActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Course course = new Course(courseNumber, courseName, credit, room, time, instructor);
-                ((User) getApplication()).getRegCourses().put(courseName, course);
+                ((User) getActivity().getApplication()).getRegCourses().put(courseName, course);
 
+
+                CourseFragment cf = new CourseFragment();
+                AppCompatActivity activity = (AppCompatActivity) v.getContext();
+                activity.getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, cf).addToBackStack(null).commit();
+                Toast.makeText(getContext(), courseName + " is registered", Toast.LENGTH_LONG).show();
 
 
             }
         });
+
+
+        return view;
     }
-
-
 }
-
-
-

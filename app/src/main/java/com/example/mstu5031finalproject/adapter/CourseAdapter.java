@@ -1,17 +1,19 @@
 package com.example.mstu5031finalproject.adapter;
 
 import android.content.Context;
-import android.content.Intent;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.mstu5031finalproject.constant.Constant;
+import com.example.mstu5031finalproject.fragment.CourseInfoFragment;
 import com.example.mstu5031finalproject.viewHolder.CourseViewHolder;
 import com.example.mstu5031finalproject.R;
-import com.example.mstu5031finalproject.activity.CourseInfoActivity;
 import com.example.mstu5031finalproject.entity.Course;
 
 import java.util.List;
@@ -33,7 +35,7 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseViewHolder> {
     }
 
     @Override
-    public void onBindViewHolder(@NonNull CourseViewHolder holder, final int position) {
+    public void onBindViewHolder(@NonNull final CourseViewHolder holder, final int position) {
         final Course course = courses.get(position);
         holder.courseNumber.setText(course.courseNumber);
         holder.courseName.setText(course.courseName);
@@ -41,9 +43,16 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseViewHolder> {
         holder.selectCourse.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(context, CourseInfoActivity.class);
-                intent.putExtra("courseNumber",course.courseNumber);
-                context.startActivity(intent);
+
+                //transfer the selected course to courseInfoFragment
+                CourseInfoFragment cif = new CourseInfoFragment();
+                Bundle bundle = new Bundle();
+                bundle.putString(Constant.SELECTED_COURSE, holder.courseNumber.getText().toString());
+                cif.setArguments(bundle);
+
+                //start courseInfoFragment
+                AppCompatActivity activity = (AppCompatActivity) v.getContext();
+                activity.getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, cif).addToBackStack(null).commit();
             }
         });
     }

@@ -26,6 +26,7 @@ import com.example.mstu5031finalproject.R;
 import com.example.mstu5031finalproject.activity.LoginActivity;
 import com.example.mstu5031finalproject.adapter.CourseAdapter;
 import com.example.mstu5031finalproject.adapter.RegCourseAdapter;
+import com.example.mstu5031finalproject.constant.Constant;
 import com.example.mstu5031finalproject.entity.Course;
 import com.example.mstu5031finalproject.entity.User;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
@@ -59,7 +60,15 @@ public class AboutMeFragment extends Fragment {
         setHasOptionsMenu(true);
         setupGoogle(view);
         profileImageView = view.findViewById(R.id.image);
-        //handle profile
+        handleProfileImage();
+        handleDroppedCourse();
+        initializeRecyclerView(view);
+
+        return view;
+    }
+
+    //handle profile image if the image has been set
+    private void handleProfileImage(){
         if(((User) getActivity().getApplication()).getProfileUrl() != null){
             try {
                 profileUri = ((User) getActivity().getApplication()).getProfileUrl();
@@ -83,19 +92,17 @@ public class AboutMeFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-//                intent.putExtra(Intent.EXTRA_LOCAL_ONLY, true);
                 startActivityForResult(Intent.createChooser(intent, "Complete action using"), RC_PHOTO_PICKER);
             }
         });
+    }
 
+    private void initializeRecyclerView(View view){
         initialData();
-
         RecyclerView recyclerView = view.findViewById(R.id.reg_recycler_view);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         recyclerView.setAdapter(new RegCourseAdapter(courses, getContext()));
-
-        return view;
     }
 
     @Override
@@ -104,6 +111,8 @@ public class AboutMeFragment extends Fragment {
         super.onCreateOptionsMenu(menu, inflater);
     }
 
+
+    //handle sign out function
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == R.id.sign_out) {
@@ -121,9 +130,7 @@ public class AboutMeFragment extends Fragment {
                 .build();
 
         mGoogleSignInClient = GoogleSignIn.getClient(getActivity(), gso);
-
         name = view.findViewById(R.id.name);
-
         GoogleSignInAccount acct = GoogleSignIn.getLastSignedInAccount(getContext());
         if (acct != null) {
             String personName = acct.getDisplayName();
@@ -138,6 +145,7 @@ public class AboutMeFragment extends Fragment {
         }
     }
 
+    //retrieve image from alubm
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         //super method removed
@@ -162,5 +170,26 @@ public class AboutMeFragment extends Fragment {
 
         }
     }
+
+
+    //delete course from User's field regCourses if the course is dropped in RegCourseAdapter
+    private void handleDroppedCourse(){
+        Bundle bundle = this.getArguments();
+        try {
+            System.out.println("Dropping course");
+            String droppedCourse = bundle.getString(Constant.DROPPED_COURSE);
+
+            System.out.println(null == droppedCourse);
+            if (droppedCourse != null && !droppedCourse.equals("")){
+                ((User) getActivity().getApplication()).getRegCourses().remove(droppedCourse);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+
+    }
+
+
 
 }
